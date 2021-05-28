@@ -16,24 +16,33 @@ getEmail(){
 }
 
 getPassword(){
-    return cy.get('#reg_password');
+    return cy.get('#employer input[aria-label="password"]');
 }
 
+getLoginButton() {
+    return cy.get('#employer button[type="submit"]');
+}
 getLoginUserName(){
-    return cy.get('#username');
+    return cy.get('.dropdown-toggle');
 }
-
 getRegisterButton() {
     return cy.get('.woocommerce-Button');
 }
-userLogin(userType, email) {
+
+//This function is useful to perform user login
+userLogin(userType, email,pwd) {
 
     const homePage=new HomePage();
     cy.log("dsfdsfs",userType)
     homePage.getLoginPage().click();
-    homePage.getLoginType(userType);  
+    //homePage.getLoginType(userType);  
     homePage.getLoginType().select(userType);
     homePage.getEmail().type(email);
+    homePage.getPassword().type(pwd);
+    homePage.getLoginButton().click();
+
+}
+getLoggedInUserName(){
 
 }
 

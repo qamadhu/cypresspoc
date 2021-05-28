@@ -1,0 +1,4 @@
+node_modules
+cypress/videos/examples/LoginSuite.js.mp4
+cypress/fixtures/example.json
+cypress/screenshots/examples/LoginSuite.js

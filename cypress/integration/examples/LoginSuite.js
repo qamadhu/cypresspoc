@@ -1,5 +1,5 @@
 // type definitions for Cypress object "cy"
-// <reference types="cypress" />
+/// <reference types="cypress" />
 
 import HomePage from '../../support/PageObjects/HomePage';
 import CheckoutPage from '../../support/PageObjects/CheckoutPage';
@@ -20,17 +20,10 @@ describe('Automation Test Suite ', function() {
 
     const homePage=new HomePage();
     const checkoutPage= new CheckoutPage();
-    const billingPage=new BillingPage();
-
+    
     //Calling
     cy.visit(Cypress.env('url'));
-    homePage.userLogin('Vendor',this.data.Email);
-    //homePage.getLoginPage().click();
-    //homePage.getLoginType('Vendor');
-    //cy.get('select').select('Vendor')
-    //homePage.getUserName().type(this.data.Username);
-    //homePage.getEmail().type(this.data.Email);
-    homePage.getPassword().type(this.data.Password)
+    homePage.userLogin(this.data.LoginType,this.data.Email,this.data.Password);
 
     // Checking whether the Register button is disabled or not either by grabbing the property or by checking its UI behavior
 
@@ -40,12 +33,13 @@ describe('Automation Test Suite ', function() {
 
     //Pause Command
     //cy.pause();
+    cy.wait(4000);
 
-    homePage.getPassword().type(this.data.NewPassword);
-    homePage.getRegisterButton().click();
+    cy.v
 
     //Checking whether the Registration is successful and whether UserName is populated under login section
-    homePage.getLoginUserName().should('have.value',this.data.Username);
+    homePage.getLoginUserName().should('be.visible');
+    cy.url().should('eq', 'https://redbench.us/#/dashboard');
 
 
     //Using Custom Commands
